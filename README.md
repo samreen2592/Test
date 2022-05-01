@@ -137,8 +137,20 @@ to initialize flops set and reset pins are avaialable,these can be synchronous o
 **LAB6-SKY130RTL D2SK3 L3 Lab flop synthesis simulations part1**
 by using gtkwave simulator here is the simulation results for asyncronous d f/f
 <img width="1440" alt="Screen Shot 2022-05-02 at 01 08 58" src="https://user-images.githubusercontent.com/104512677/166161963-f5c11f7b-41c1-4ef7-839e-af0aa097da63.png">
+**SKY130RTL D3SK1 L3 Introduction to optimisations part3 Advanced State Optimisation**
+In digital design we have two optimizations 
+    			1.combinational logic optimization
+			2.sequential optimization
+			
+In combinational optimization ,optimization is done  for the most optimized logic by
+				1.constant propagation:by using this we can reduce the number of transistors which in turn reduces area,power
+				<img width="1440" alt="Screen Shot 2022-05-02 at 01 34 24" src="https://user-images.githubusercontent.com/104512677/166162912-f74b3d0a-8d61-4e55-8b36-9f46767650b0.png">
+				2.boolean logic optimization:In this we can reduce boolean equation to  a simpler one 
+<img width="1440" alt="Screen Shot 2022-05-02 at 01 37 44" src="https://user-images.githubusercontent.com/104512677/166162962-7bebf7d3-23f6-4f33-a4e2-83d3cb171f97.png">
 
 
+				
+		
 
  
  
