@@ -244,9 +244,13 @@ endmodule
 after updating the logic now 3 flops are inferred as shown in the snippet
 <img width="1440" alt="Screen Shot 2022-05-02 at 03 01 05" src="https://user-images.githubusercontent.com/104512677/166165395-cb1d1923-1e15-46f3-af0c-14a559c5478a.png">
 
+**DAY4-GLS, blocking vs non-blocking and Synthesis-Simulation mismatch**
 
-				
+GLS, Synthesis-Simulation mismatch and Blocking/Non-blocking statements SKY130RTL D4SK1 L1
+
+**GLSConceptsAndFlowUsingiverilog**:As the synthesizer doen't look for sensitivity list and it looks only for the statements in procedural block, it infers correct circuit and if we simulate the netlist code, there will be a synthesis simulation mismatch To avoid the synthesis and simulation mismatch. it is very important to check the behavior of the circuit first and then match it with the expected output seen in simulation and make sure there are no synthesis and simulation mismatches. This is why we use GLS.			
 		
+**Lab GLS Synth Sim Mismatch part1**
 
  
  
