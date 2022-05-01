@@ -148,6 +148,19 @@ In combinational optimization ,optimization is done  for the most optimized logi
 				2.boolean logic optimization:In this we can reduce boolean equation to  a simpler one 
 <img width="1440" alt="Screen Shot 2022-05-02 at 01 37 44" src="https://user-images.githubusercontent.com/104512677/166162962-7bebf7d3-23f6-4f33-a4e2-83d3cb171f97.png">
 
+In sequential optimization we have sequential constant propagation
+				   Advanced{cloning,retiming.state optimization}
+
+**SKY130RTL D3SK2 L1 Lab06 Combinational Logic Optimisations part1**
+files used for optimization 
+<img width="1440" alt="Screen Shot 2022-05-02 at 01 59 46" src="https://user-images.githubusercontent.com/104512677/166163441-e90cfec5-bd0e-41cc-9f18-7525fea3b99f.png">
+
+synthesizing opt_check in yosys<img width="1440" alt="Screen Shot 2022-05-02 at 02 05 51" src="https://user-images.githubusercontent.com/104512677/166163642-bd2dbf1d-8fbd-4d39-bf6c-59a23603621b.png">
+
+
+
+
+				   
 
 				
 		
