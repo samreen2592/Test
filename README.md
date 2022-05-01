@@ -212,6 +212,15 @@ always @(posedge clk, posedge reset) begin if(reset) begin q <= 1'b0; q1 <= 1'b0
 
 endmodule
 ```
+**SKY130RTL D3SK4 L1 Seq optimisation unused outputs part1**
+example 1
+```
+module counter_opt (input clk , input reset , output q); reg [2:0] count; assign q = count[0];
+
+always @(posedge clk ,posedge reset) begin if(reset) count <= 3'b000; else count <= count + 1; end
+
+endmodule
+```
 
 
 				   
