@@ -127,8 +127,12 @@ module multiple_modules(a, b, c, y);
   assign net1 = \u1.y ;
 endmodule
 ```
-
-
+commnads given in yosys to flatten the netlist is as follows 
+ 
+ **yosys> write_verilog -noattr multiple_modules_hier.v**
+ 
+ 
+ 
 
 
 
