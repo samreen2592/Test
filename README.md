@@ -54,6 +54,87 @@ endmodule```
 <img width="1440" alt="Screen Shot 2022-04-29 at 16 21 20" src="https://user-images.githubusercontent.com/104512677/166157488-ab8315cb-6c57-4e54-a552-304558db4698.png">
 
 Introduction to yosys:an overview of the operation of the tool and the files we'll need to provide the tool to give the required netlist. We give RTL design code, .lib file which has all the building blocks of the netlist. Using these two files, Yosys synthesizer generates a netlist file. .lib basically is a collection of logical modules like, And, Or, Not etc.... These are equivalent gate level representation of the RTL code. Below are the commands to perform above synthesis.
+<img width="1440" alt="Screen Shot 2022-04-29 at 17 10 02" src="https://user-images.githubusercontent.com/104512677/166158717-41b83aad-6e3a-4ce7-84e0-cce1847813ed.png">
+<img width="1440" alt="Screen Shot 2022-05-01 at 14 14 42" src="https://user-images.githubusercontent.com/104512677/166158904-43e03a4e-b8a1-4dc5-8273-c9396ea12720.png">
+<img width="1440" alt="Screen Shot 2022-05-01 at 14 24 32" src="https://user-images.githubusercontent.com/104512677/166158915-5707de56-3176-4459-b14e-251ef20e5d74.png">
+
+##DAY2-Timing libs, hierarchical vs flat synthesis and efficient flop coding styles Introduction to timing .libs LAB4-SKY130RTL D2SK1 L1 Lab4 Introduction to dot Lib
+This lab guides us through the .lib files where we have all the gates coded in. 
+Command to open the sky130_fd_sc_hd__tt_025C_1v80.lib file:
+**~/sky130RTLDesignAndSynthesisWorkshop/verilog_files$ gvim ../my_lib/lib/sky130_fd_sc_hd__tt_025C_1v80.lib**
+<img width="1440" alt="Screen Shot 2022-05-01 at 15 06 15" src="https://user-images.githubusercontent.com/104512677/166159105-819257a5-2dbc-4d3c-82c8-daec30700921.png">
+COMPARISION OF AND GATES FOR 2_0 2_1 2_4 AS THE CELL SIZE IS INCREASING  CELL AREA IS ALSO INCREASING HERE IS THE SNIPPET OF COMPARISION 
+<img width="1440" alt="Screen Shot 2022-05-01 at 17 07 06" src="https://user-images.githubusercontent.com/104512677/166159139-cd15ef5b-0e96-4651-bbc2-800bc46761f9.png">
+**LAB-5-SKY130RTL D2SK2 L1 Lab05 Hier synthesis flat synthesis part1**
+Here in this lab we are synthesizing the netlist in to a simple one for the verilog code multiple_modules.v
+```
+module sub_module2 (input a, input b, output y);
+	assign y = a | b;
+endmodule
+
+module sub_module1 (input a, input b, output y);
+	assign y = a&b;
+endmodule
+
+
+module multiple_modules (input a, input b, input c , output y);
+	wire net1;
+	sub_module1 u1(.a(a),.b(b),.y(net1));  //net1 = a&b
+	sub_module2 u2(.a(net1),.b(c),.y(y));  //y = net1|c ,ie y = a&b + c;
+endmodule
+```
+after flattening we get netlist as shown below
+```
+module multiple_modules(a, b, c, y);
+  wire _0_;
+  wire _1_;
+  wire _2_;
+  wire _3_;
+  wire _4_;
+  wire _5_;
+  input a;
+  input b;
+  input c;
+  wire net1;
+  wire \u1.a ;
+  wire \u1.b ;
+  wire \u1.y ;
+  wire \u2.a ;
+  wire \u2.b ;
+  wire \u2.y ;
+  output y;
+  sky130_fd_sc_hd__and2_0 _6_ (
+    .A(_1_),
+    .B(_0_),
+    .X(_2_)
+  );
+  sky130_fd_sc_hd__lpflow_inputiso1p_1 _7_ (
+    .A(_4_),
+    .SLEEP(_3_),
+    .X(_5_)
+  );
+  assign _4_ = \u2.b ;
+  assign _3_ = \u2.a ;
+  assign \u2.y  = _5_;
+  assign \u2.a  = net1;
+  assign \u2.b  = c;
+  assign y = \u2.y ;
+  assign _1_ = \u1.b ;
+  assign _0_ = \u1.a ;
+  assign \u1.y  = _2_;
+  assign \u1.a  = a;
+  assign \u1.b  = b;
+  assign net1 = \u1.y ;
+endmodule
+```
+
+
+
+
+
+
+
+
 
 
 
