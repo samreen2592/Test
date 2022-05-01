@@ -225,7 +225,25 @@ endmodule
 In this counter logic after synthesizing its showing only one flop shown in the snippet
 <img width="1440" alt="Screen Shot 2022-05-02 at 02 51 28" src="https://user-images.githubusercontent.com/104512677/166165114-6a9225c1-8f4e-4da4-a351-ffad3d55fca3.png">
 
-				   
+**SKY130RTL D3SK4 L2 Seq optimisation unused outputs part2**
+```
+module counter_opt (input clk , input reset , output q);
+reg [2:0] count;
+assign q = (count[2:0] == 3'b100);
+
+always @(posedge clk ,posedge reset)
+begin
+	if(reset)
+		count <= 3'b000;
+	else
+		count <= count + 1;
+end
+
+endmodule
+```
+after updating the logic now 3 flops are inferred as shown in the snippet
+<img width="1440" alt="Screen Shot 2022-05-02 at 03 01 05" src="https://user-images.githubusercontent.com/104512677/166165395-cb1d1923-1e15-46f3-af0c-14a559c5478a.png">
+
 
 				
 		
