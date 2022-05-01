@@ -17,20 +17,22 @@ lab2:Introduction to iverilog and gtkwave In this lab simulation of multiplexer 
 
 verilog code and testbench for multiplexer
 
-**module good_mux(input i0,input i1,input sel,output y)
+```
+module good_mux (input i0 , input i1 , input sel , output reg y);
 always @ (*)
-if {sel}
-y<=i1;
+begin
+if(sel)
+y <= i1;
 else
-y<=i0;
+y <= i0;
 end
-endmodule**
+endmodule```
 
-**timescale 1ns/1ps
- module tb_good_mux"
-//inputs 
-i0,i1,sel:
-//outputs
+```timescale 1ns / 1ps
+module tb_good_mux;
+// Inputs
+reg i0,i1,sel;
+// Outputs
 wire y;
 // Instantiate the Unit Under Test (UUT), name based instantiation
 good_mux uut (.sel(sel),.i0(i0),.i1(i1),.y(y));
@@ -47,7 +49,20 @@ end
 always #75 sel = ~sel;
 always #10 i0 = ~i0;
 always #55 i1 = ~i1;
-endmodule**
+endmodule```
+```
+<img width="1440" alt="Screen Shot 2022-04-29 at 16 21 20" src="https://user-images.githubusercontent.com/104512677/166157488-ab8315cb-6c57-4e54-a552-304558db4698.png">
+
+Introduction to yosys:an overview of the operation of the tool and the files we'll need to provide the tool to give the required netlist. We give RTL design code, .lib file which has all the building blocks of the netlist. Using these two files, Yosys synthesizer generates a netlist file. .lib basically is a collection of logical modules like, And, Or, Not etc.... These are equivalent gate level representation of the RTL code. Below are the commands to perform above synthesis.
+
+
+
+
+
+
+
+
+
 
 
 
