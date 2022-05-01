@@ -174,9 +174,44 @@ example 3
 module opt_check3 (input a , input b, input c , output y); assign y = a?(c?b:0):0; endmodule
  
 ```
-
+**Lab07 Sequential Logic Optimisations part1**
+example1 In the synthesis report, we'll see that a Dflop was inferred in this example
+```
+module dff_const1(input clk, input reset, output reg q); always @(posedge clk, posedge reset) begin if(reset) q <= 1'b0; else q <= 1'b1; end
        
+```
+example 2
+```
+module dff_const2(input clk, input reset, output reg q); always @(posedge clk, posedge reset) begin if(reset) q <= 1'b1; else q <= 1'b1; end
 
+endmodule
+```
+**SKY130RTL D3SK3 L2 Lab07 Sequential Logic Optimisations part2**
+example3
+
+```
+module dff_const3(input clk, input reset, output reg q); reg q1;
+
+always @(posedge clk, posedge reset) begin if(reset) begin q <= 1'b1; q1 <= 1'b0; end else begin q1 <= 1'b1; q <= q1; end end
+
+endmodule
+```
+example 4
+```
+module dff_const4(input clk, input reset, output reg q); reg q1;
+
+always @(posedge clk, posedge reset) begin if(reset) begin q <= 1'b1; q1 <= 1'b1; end else begin q1 <= 1'b1; q <= q1; end end
+
+endmodule
+```
+example 5
+```
+module dff_const5(input clk, input reset, output reg q); reg q1;
+
+always @(posedge clk, posedge reset) begin if(reset) begin q <= 1'b0; q1 <= 1'b0; end else begin q1 <= 1'b1; q <= q1; end end
+
+endmodule
+```
 
 
 				   
