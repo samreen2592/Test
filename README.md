@@ -222,6 +222,8 @@ always @(posedge clk ,posedge reset) begin if(reset) count <= 3'b000; else count
 endmodule
 ```
 
+In this counter logic after synthesizing its showing only one flop shown in the snippet
+<img width="1440" alt="Screen Shot 2022-05-02 at 02 51 28" src="https://user-images.githubusercontent.com/104512677/166165114-6a9225c1-8f4e-4da4-a351-ffad3d55fca3.png">
 
 				   
 
