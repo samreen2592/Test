@@ -131,6 +131,15 @@ commnads given in yosys to flatten the netlist is as follows
  
  **yosys> write_verilog -noattr multiple_modules_hier.v**
  
+**Various Flop coding styles and optimization SKY130RTL D2SK3 L1 Why Flops and Flop coding styles part1**
+why a flop:In combinational circuits output changes with respect to change in input ,for the change to occur at output there is a propagation delay(time taken by logical circuit to change its state) of gate.Due to this there may be chance of getting glitch at output.if there are multiple combinational circuits in the design chances of occuring glitches will be high.To avoid this we will use a flop,When a flop is used, the output of combinational circuit is stored in it and it is propagated only at the posedge or negedge of the clock so that the next combinational circuit gets a glitch free input thereby stabilising the output.
+to initialize flops set and reset pins are avaialable,these can be synchronous or asynchronous
+**LAB6-SKY130RTL D2SK3 L3 Lab flop synthesis simulations part1**
+by using gtkwave simulator here is the simulation results for asyncronous d f/f
+<img width="1440" alt="Screen Shot 2022-05-02 at 01 08 58" src="https://user-images.githubusercontent.com/104512677/166161963-f5c11f7b-41c1-4ef7-839e-af0aa097da63.png">
+
+
+
  
  
 
