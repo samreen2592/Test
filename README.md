@@ -156,7 +156,26 @@ files used for optimization
 <img width="1440" alt="Screen Shot 2022-05-02 at 01 59 46" src="https://user-images.githubusercontent.com/104512677/166163441-e90cfec5-bd0e-41cc-9f18-7525fea3b99f.png">
 
 synthesizing opt_check in yosys<img width="1440" alt="Screen Shot 2022-05-02 at 02 05 51" src="https://user-images.githubusercontent.com/104512677/166163642-bd2dbf1d-8fbd-4d39-bf6c-59a23603621b.png">
+the command used for constant optimization is 
+       **opt_clean -purge **
+ 
+ after linking the design by "show " command we got graphical representation as shown<img width="1440" alt="Screen Shot 2022-05-02 at 02 10 03" src="https://user-images.githubusercontent.com/104512677/166163846-a76413f4-d6a4-4a13-8284-67c4f106c288.png">
+ example 1 opt_check
+ ```
+ module opt_check (input a , input b , output y); assign y = a?b:0; endmodule
+ ```
+ example 2 
+ 
+```
+module opt_check2 (input a , input b , output y); assign y = a?1:b; endmodule
+```
+example 3
+```
+module opt_check3 (input a , input b, input c , output y); assign y = a?(c?b:0):0; endmodule
+ 
+```
 
+       
 
 
 
