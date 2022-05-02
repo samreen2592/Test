@@ -251,6 +251,42 @@ GLS, Synthesis-Simulation mismatch and Blocking/Non-blocking statements SKY130RT
 **GLSConceptsAndFlowUsingiverilog**:As the synthesizer doen't look for sensitivity list and it looks only for the statements in procedural block, it infers correct circuit and if we simulate the netlist code, there will be a synthesis simulation mismatch To avoid the synthesis and simulation mismatch. it is very important to check the behavior of the circuit first and then match it with the expected output seen in simulation and make sure there are no synthesis and simulation mismatches. This is why we use GLS.			
 		
 **Lab GLS Synth Sim Mismatch part1**
+example 1 
+```
+module ternary_operator_mux (input i0 , input i1 , input sel , output y); assign y = sel?i1:i0; endmodule
+```
+to invoke GLS we will use  iverilog  ../my_lib/verilog_model/primitives.v ../my_lib/lib/sky130_fd_sc_hd.v ternary_operator_mux_net.v tb_ternary_operator_mux.v
+
+**SKY130RTL D4SK2 L2 Lab GLS Synth Sim Mismatch part2**
+example 2 
+making always block evaluated only on if 
+```
+module bad_mux (input i0 , input i1 , input sel , output reg y); always @ (sel) begin if(sel) y <= i1; else y <= i0; end endmodule
+```
+<img width="1440" alt="Screen Shot 2022-05-02 at 04 23 23" src="https://user-images.githubusercontent.com/104512677/166167827-a4d59ace-ae16-4b4a-aa36-7979ea0a39bd.png">
+
+**SKY130RTL D4SK3 L1 Lab Synth sim mismatch blocking statement part1**
+here the output is depending on the past value of x which is dependednt on a and b and it appears like a flop
+```
+module blocking_caveat (input a , input b , input c, output reg d); reg x; always @ (*) begin d = x & c; x = a | b; end endmodule
+```
+
+**SKY130RTL D4SK3 L2 Lab Synth sim mismatch blocking statement part2**
+Here the netlist is generated and the respective gtkwave is generated
+
+**DAY5- Optimization in synthesis**
+
+D5SK1 L1 IF CASE Constructs part1
+IF case is a priority logic 
+		if(cond)
+		else
+		if(cond)
+		else 
+		
+Inferred latch comes with incomplete if:to complete the hardware of incompleted if else latch is enabled which is known as inferred latch
+
+
+		
 
  
  
