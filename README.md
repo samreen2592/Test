@@ -283,7 +283,29 @@ IF case is a priority logic
 		if(cond)
 		else 
 		
-Inferred latch comes with incomplete if:to complete the hardware of incompleted if else latch is enabled which is known as inferred latch
+Inferred latch comes with incomplete if:to complete the hardware of incompleted if else latch is enabled which is known as inferred latch.In a combinational circuit we can't have inferred latch.to avoid this inferred latch condition we use default
+
+case state is not a priority logic
+
+**L1 Lab Incomplete IF part1**
+example 1 :incomplete if
+```
+module counter_opt (input clk , input reset , output q);
+reg [2:0] count;
+assign q = (count[2:0] == 3'b100);
+
+always @(posedge clk ,posedge reset)
+begin
+	if(reset)
+		count <= 3'b000;
+	else
+		count <= count + 1;
+end
+
+endmodule
+```
+here we are referring mux but due to incomplete if we are getting  a inferred latch <img width="1440" alt="Screen Shot 2022-05-02 at 09 31 10" src="https://user-images.githubusercontent.com/104512677/166182760-4123c452-b00a-490b-b7ed-d4118277ff3d.png">
+<img width="1440" alt="Screen Shot 2022-05-02 at 09 32 06" src="https://user-images.githubusercontent.com/104512677/166182795-44ed84f9-8689-41e3-87bc-33b874aa308e.png">
 
 
 		
